@@ -1,0 +1,16 @@
+{
+  "name": "jiongeleshe-blog-platform",
+  "version": "1.0.0",
+  "description": "A Node.js RESTful API Project building the backend of a Blog Platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node",
+    "Restful",
+    "Api"
+  ],
+  "author": "Elvis Ombiro",
+  "license": "ISC"
+}
