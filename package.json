@@ -12,5 +12,8 @@
     "Api"
   ],
   "author": "Elvis Ombiro",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
 }
