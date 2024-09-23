@@ -5,6 +5,8 @@ const expressLayout = require('express-ejs-layouts');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
+
 const mongoUrl = 'mongodb://localhost:5000';
 
 const connectDB = require('./server/config/db');
