@@ -1,0 +1,91 @@
+In the provided code, the API endpoints are determined by the routes defined in the following files:
+1.	./server/routes/main - This handles the base URL and possibly other main routes.
+2.	./server/routes/admin - This contains the administrative routes for the application.
+These two files will export route handlers that define the actual endpoints of the API. Since the app.use statement applies these routes to the root path (/), it suggests that any endpoint defined in those files will be prefixed by /
+Here’s a list of the API endpoints in the given code, organized by their routes and HTTP methods:
+Public Endpoints
+1.	GET /admin
+o	Displays the Admin login page.
+2.	POST /admin
+o	Handles the admin login, checks credentials, and sets a JWT token in cookies.
+3.	POST /register
+o	Allows a user to register by providing a username and password. The password is hashed before storing.
+4.	GET /logout
+o	Clears the JWT token and logs out the admin.
+Authenticated Endpoints (Require authMiddleware):
+These endpoints require a valid JWT token to be present in the cookies to authorize access.
+1.	GET /dashboard
+o	Displays the Admin Dashboard page, showing all posts.
+2.	GET /add-post
+o	Displays the "Create New Post" form.
+3.	POST /add-post
+o	Handles the creation of a new post, saves it to the database, and redirects to the dashboard.
+4.	GET /edit-post/:id
+o	Displays the "Edit Post" form for the post with the specified id.
+5.	PUT /edit-post/:id
+o	Handles updating an existing post's content for the post with the specified id.
+6.	DELETE /delete-post/:id
+o	Deletes the post with the specified id and redirects to the dashboard.
+Admin Login - GET /admin – Display login page
+POST /admin – Handle login and set JWT token
+Admin Dashboard
+GET /dashboard – Show dashboard with all posts
+Post Management
+GET /add-post – Show form to create a new post
+POST /add-post – Handle post creation
+GET /edit-post/:id – Show form to edit a specific post
+PUT /edit-post/:id – Handle post update
+DELETE /delete-post/:id – Delete a specific post
+User Registration
+POST /register – Register a new user
+Admin Logout
+GET /logout – Logout and clear the JWT token
+All protected routes are guarded by the authMiddleware, which checks for a valid JWT token in the cookies.
+Public Endpoints:
+1.	GET /
+o	The home page that displays a list of blog posts, paginated.
+o	Example: / or /?page=2 (for paginated views).
+2.	GET /post/:id
+o	Displays a specific blog post by its id.
+o	Example: /post/12345.
+3.	POST /search
+o	Handles a search request for blog posts based on a search term.
+o	Example: /search with a body containing searchTerm.
+4.	GET /about
+o	Displays the "About" page.
+o	Example: /about.
+
+Endpoint Summary
+Home Page - GET / – Displays paginated list of blog posts.
+Post Detail - GET /post/:id – Displays a single blog post by its ID.
+Search - POST /search – Searches for blog posts by title or body content matching a search term.
+About Page - GET /about – Displays the "About" page.
+Each of these endpoints either renders a page or serves data based on interaction with the Post model (which is likely connected to MongoDB).
+The code provided for post.js defines a Mongoose schema for a Post model, which represents a blog post in a MongoDB database. This schema itself does not directly define any API endpoints, but it interacts with the endpoints that you defined in other route files like main.js or admin.js.
+How this Schema is Used in Endpoints:
+The Post model in post.js is used in other files to interact with the database. Specifically, it is used to:
+1.	Create new posts (e.g., in /add-post).
+2.	Retrieve posts for listing or viewing (e.g., / for listing posts and /post/:id for viewing a single post).
+3.	Update existing posts (e.g., in /edit-post/:id).
+4.	Delete posts (e.g., in /delete-post/:id).
+The Post model defines the structure for blog posts, ensuring that each post has a title, body, and timestamps (createdAt, updatedAt), which are essential for CRUD operations in the routes.
+The user.js code defines a Mongoose schema for a User model, which represents users in a MongoDB database. Similar to the Post schema, this schema does not define any API endpoints on its own but is used in routes to interact with the database. The User model will typically be used for user authentication and management.
+Fields in the User Schema:
+•	username: A unique, required field for the user's username.
+•	password: A required field for storing the user's hashed password.
+
+Endpoints that Interact with the User Model:
+From the previous route files (admin.js), here are the endpoints that use the User model:
+1.	POST /register
+o	Registers a new user, where the User model is used to create and save the user to the database.
+2.	POST /admin (Login)
+•	Authenticates an existing user. The User model is used to find the user in the database by username, and the password is validated against the stored hashed password.
+3.	Authentication Middleware (JWT)
+•	After login, the User model is indirectly involved when decoding the JWT token, which includes the userId stored in the database.
+
+
+
+
+
+
+
