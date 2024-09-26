@@ -5,6 +5,21 @@ const Post = require('../models/Post');
 /**
  * GET /
  * HOME
+ * Admin Login - GET /admin – Display login page
+ * POST /admin – Handle login and set JWT token
+ * Admin Dashboard
+ * GET /dashboard – Show dashboard with all posts
+ * Post Management
+ * GET /add-post – Show form to create a new post
+ * POST /add-post – Handle post creation
+ * GET /edit-post/:id – Show form to edit a specific post
+ * PUT /edit-post/:id – Handle post update
+ * DELETE /delete-post/:id – Delete a specific post
+ * User Registration
+ * POST /register – Register a new user
+ * Admin Logout
+ * GET /logout – Logout and clear the JWT token
+
 */
 router.get('', async (req, res) => {
   try {
@@ -41,20 +56,20 @@ router.get('', async (req, res) => {
 
 });
 
-// router.get('', async (req, res) => {
-//   const locals = {
-//     title: "NodeJs Blog",
-//     description: "Simple Blog created with NodeJs, Express & MongoDb."
-//   }
+ router.get('', async (req, res) => {
+   const locals = {
+     title: "NodeJs Blog",
+     description: "Simple Blog created with NodeJs, Express & MongoDb."
+   }
 
-//   try {
-//     const data = await Post.find();
-//     res.render('index', { locals, data });
-//   } catch (error) {
-//     console.log(error);
-//   }
+   try {
+     const data = await Post.find();
+     res.render('index', { locals, data });
+   } catch (error) {
+     console.log(error);
+   }
 
-// });
+ });
 
 
 /**
