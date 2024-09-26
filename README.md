@@ -13,5 +13,10 @@ The project is structured into four main directories under the `server` director
 - **models**: Defines the data models for the application, including `post.js` and `user.js`, which outline the structure of the data stored in MongoDB.
 - **routes**: Manages the application routing, with `admin.js` handling admin-specific routes and `main.js` dealing with the public-facing routes.
 
+Clone the repository
+
+Install dependencies: Make sure you have Node.js and npm installed. Then run npm install
+
+Connect to MongoDB: Ensure you have a MongoDB database set up. You can use MongoDB Atlas for a cloud-based solution.
 
 
