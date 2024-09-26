@@ -10,7 +10,11 @@ const jwtSecret = process.env.JWT_SECRET;
 
 
 /**
- * 
+ * Home Page - GET / – Displays paginated list of blog posts.
+* Post Detail - GET /post/:id – Displays a single blog post by its ID.
+* Search - POST /search – Searches for blog posts by title or body content matching a search term.
+* About Page - GET /about – Displays the "About" page.
+ 
  * Check Login
 */
 const authMiddleware = (req, res, next ) => {
